@@ -50,7 +50,9 @@ public class UploadSerlvet extends HttpServlet {
             String fileName = getFileName(header);
 //            //把文件写到指定路径
             String savePath = "D:/files/";
-            part.write(savePath+fileName);
+            File fileSavePath =  new File(savePath);
+	    fileSavePath.mkdirs();
+	    part.write(fileSavePath+fileName);
             JSONObject obj  = new JSONObject();
             obj.put("code", 0);
             obj.put("url", "http://localhost:8080/file/"+fileName);
